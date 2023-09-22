@@ -50,27 +50,25 @@ public class GDate {
         return this.julianDay - date.julianDay;
     }
 
-//    public GDate add(int days) {
-//        {
-//            GDate date3 = new GDate();
-//
-//             return date3;
-//        }
-//    }
+    public GDate add(int days) {
+        return new GDate(this.julianDay + days);
+    }
+
+    public int julianDay() {
+        return this.julianDay;
+    }
 
     public int year() {
-
-
-       int l = this.julianDay + 68569;
-        int n = ( 4 * l ) / 146097;
-        l = l - ( 146097 * n + 3 ) / 4;
-        int i = ( 4000 * ( l + 1 ) ) / 1461001;
-        l = l - ( 1461 * i ) / 4 + 31;
-        int j = ( 80 * l ) / 2447;
-        int d = l - ( 2447 * j ) / 80;
+        int l = this.julianDay + 68569;
+        int n = (4 * l) / 146097;
+        l = l - (146097 * n + 3) / 4;
+        int i = (4000 * (l + 1)) / 1461001;
+        l = l - (1461 * i) / 4 + 31;
+        int j = (80 * l) / 2447;
+        int d = l - (2447 * j) / 80;
         l = j / 11;
-       int m = j + 2 - ( 12 * l );
-       int y = 100 * ( n - 49 ) + i + l;
+        int m = j + 2 - (12 * l);
+        int y = 100 * (n - 49) + i + l;
 
         return y;
     }
@@ -104,6 +102,12 @@ public class GDate {
         int y = 100 * ( n - 49 ) + i + l;
 
         return d;
+    }
+
+    public String toString() {
+        return String.format("%04d",this.year()) + "."
+                + String.format("%02d",this.month()) + "."
+                + String.format("%02d",this.day());
     }
 
 }

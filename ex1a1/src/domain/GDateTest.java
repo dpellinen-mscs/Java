@@ -74,17 +74,17 @@ class GDateTest {
         assertEquals(2, date3.diff(date2));
     }
 
-//    @Test
-//    void add() {
-//        GDate date2 = new GDate(2000, 1, 2);
-//        GDate date3 = this.date1.add(1);
-//        assertTrue(date2.equals(date3));
-//    }
+    @Test
+    void add() {
+        GDate date2 = new GDate(2000, 1, 2);
+        GDate date3 = this.date1.add(1);
+        assertTrue(date2.equals(date3));
+    }
 
-//    @Test
-//    void toJulianDay() {
-//        assertEquals(2451545, this.date1.julianDay());
-//    }
+    @Test
+    void toJulianDay() {
+        assertEquals(2451545, this.date1.julianDay());
+    }
 
     @Test
     void year() {
