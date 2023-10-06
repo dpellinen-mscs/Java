@@ -32,8 +32,7 @@ class LineItemTest {
         assertEquals(this.lineItem1.getLineItemId(), lineItem2.getLineItemId());
         assertEquals(this.lineItem1.getAmount(), lineItem2.getAmount());
         assertEquals(this.lineItem1.getDescription(), lineItem2.getDescription());
-//        assertNotEquals(this.lineItem1, lineItem2);
-        assertFalse(lineItem1 == lineItem2);
+        assertNotSame(lineItem1, lineItem2);
     }
 
     @Test

@@ -53,17 +53,15 @@ public class GDate {
         return this.julianDay - date.julianDay;
     }
 
-//    public GDate add(int days) {
-//        {
-//            GDate date3 = new GDate();
-//
-//             return date3;
-//        }
-//    }
+    public int julianDay() {
+        return this.julianDay;
+    }
+
+    public GDate add(int days) {
+        return new GDate(this.julianDay + days);
+    }
 
     public int year() {
-
-
         int l = this.julianDay + 68569;
         int n = ( 4 * l ) / 146097;
         l = l - ( 146097 * n + 3 ) / 4;
@@ -109,12 +107,12 @@ public class GDate {
         return d;
     }
 
-        @Override
-                public String toString() {
-            return String.format("%04d", this.year()) + "."
-                    + String.format("%02d", this.month()) + "."
-                    + String.format("%02d", this.day());
-        }
+    @Override
+    public String toString() {
+        return String.format("%04d", this.year()) + "."
+            + String.format("%02d", this.month()) + "."
+            + String.format("%02d", this.day());
+    }
 
     @Override
     public boolean equals(Object o) {

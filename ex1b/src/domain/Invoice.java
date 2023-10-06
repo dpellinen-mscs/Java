@@ -16,8 +16,10 @@ public class Invoice {
      * @param dueDate
      */
     public Invoice(int status, GDate invoiceDate, GDate dueDate) {
-        // TODO - implement Invoice.Invoice
-        throw new UnsupportedOperationException();
+        this.invoiceId = DbContext.getNextInvoiceId();
+        this.status = status;
+        this.invoiceDate = new GDate(invoiceDate);
+        this.dueDate = new GDate(dueDate);
     }
 
     /**
@@ -42,17 +44,22 @@ public class Invoice {
      * @param lineItem
      */
     public void addLineItem(LineItem lineItem) {
-    this.lineItems.add(lineItem);
+        this.lineItems.add(new LineItem(lineItem));
     }
 
     /**
      *
      * @param lineItemId
      */
-//    public LineItem removeLineItem(int lineItemId) {
-//        // TODO - implement Invoice.removeLineItem
-//        throw new UnsupportedOperationException();
-//    }
+    public LineItem removeLineItem(LineItem lineItem) {
+        LineItem removedLineItem = null;
+        int index = this.lineItems.indexOf(lineItem);
+        if (index != -1) {
+            removedLineItem = this.lineItems.get(index).copy();
+            this.lineItems.remove(index);
+        }
+        return removedLineItem;
+    }
 
     /**
      *
@@ -66,19 +73,13 @@ public class Invoice {
         }
         return lineItem;
     }
-//    // test Invoice.removeLineItem(LineItem lineItem)
-//        this.invoice1.addLineItem(lineItem1);
-//    removedLineItem = this.invoice1.removeLineItem(lineItem1);
-//    assertEquals(lineItem1, removedLineItem);
-//    assertFalse(lineItem1 == removedLineItem);
-//    // test removing from empty ArrayList
-//    removedLineItem = this.invoice1.removeLineItem(lineItem1);
-//    assertEquals(null, removedLineItem);
-//}
 
     public double total() {
-        // TODO - implement Invoice.total
-        throw new UnsupportedOperationException();
+        double total = 0.0;
+        for (LineItem lineItem : lineItems) {
+            total += lineItem.getAmount();
+        }
+        return total;
     }
 
     public int getInvoiceId() {
