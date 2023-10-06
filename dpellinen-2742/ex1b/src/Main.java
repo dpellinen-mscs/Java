@@ -2,8 +2,6 @@ import domain.GDate;
 import domain.Invoice;
 import domain.LineItem;
 
-import java.util.InvalidPropertiesFormatException;
-
 public class Main {
     public static void main(String[] args) {
 

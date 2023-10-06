@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ex1a1/ex1a1.iml" filepath="$PROJECT_DIR$/ex1a1/ex1a1.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ex1b/ex1b.iml" filepath="$PROJECT_DIR$/ex1b/ex1b.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dpellinen-2742/ex1a/ex1a.iml" filepath="$PROJECT_DIR$/dpellinen-2742/ex1a/ex1a.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dpellinen-2742/ex1a1.iml" filepath="$PROJECT_DIR$/dpellinen-2742/ex1a1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dpellinen-2742/ex1b/ex1b.iml" filepath="$PROJECT_DIR$/dpellinen-2742/ex1b/ex1b.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dpellinen-2742/ex1c/ex1c.iml" filepath="$PROJECT_DIR$/dpellinen-2742/ex1c/ex1c.iml" />
     </modules>
   </component>
 </project>
