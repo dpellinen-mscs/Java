@@ -1,36 +1,41 @@
 package domain;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Invoice {
     private int invoiceId;
     private int status;
-    private GDate invoiceDate;
-    private GDate dueDate;
+    private LocalDateTime invoiceDate;
+    private LocalDateTime dueDate;
     private ArrayList<LineItem> lineItems = new ArrayList<LineItem>();
+    private Apartment apartment = null;
 
     /**
-     *
      * @param status
      * @param invoiceDate
      * @param dueDate
      */
-    public Invoice(int status, GDate invoiceDate, GDate dueDate) {
+    public Invoice(int status, LocalDateTime invoiceDate, LocalDateTime dueDate, Apartment apartment) {
         this.invoiceId = DbContext.getNextInvoiceId();
         this.status = status;
-        this.invoiceDate = new GDate(invoiceDate);
-        this.dueDate = new GDate(dueDate);
+        this.invoiceDate = invoiceDate;
+        this.dueDate = dueDate;
+        this.apartment = apartment;
     }
 
     /**
-     *
      * @param invoice
      */
     public Invoice(Invoice invoice) {
         this.invoiceId = invoice.invoiceId;
         this.status = invoice.status;
-        this.invoiceDate = new GDate(invoice.invoiceDate);
-        this.dueDate = new GDate(invoice.dueDate);
+        this.invoiceDate = invoice.invoiceDate;
+        this.dueDate = invoice.dueDate;
+        this.apartment = invoice.apartment;
+
 
         for (LineItem lineItem : invoice.lineItems) {
             this.lineItems.add(lineItem.copy());
@@ -41,11 +46,12 @@ public class Invoice {
 //        Invoice invoice = new Invoice(this.status, this.invoiceDate, this.dueDate);
 //        invoice.invoiceId = this.invoiceId;
 //        return invoice;
-        return new Invoice(this);
+        Invoice invoice = new Invoice(this.status, this.invoiceDate, this.dueDate, null);
+        invoice.invoiceId = this.invoiceId;
+        return invoice;
     }
 
     /**
-     *
      * @param lineItem
      */
     public void addLineItem(LineItem lineItem) {
@@ -57,8 +63,7 @@ public class Invoice {
     }
 
     /**
-     *
-//     * @param lineItemId
+     * //     * @param lineItemId
      */
     public LineItem removeLineItem(LineItem lineItem) {
         LineItem removedLineItem = null;
@@ -71,7 +76,6 @@ public class Invoice {
     }
 
     /**
-     *
      * @param index
      */
     public LineItem removeLineItem(int index) {
@@ -99,27 +103,31 @@ public class Invoice {
         return status;
     }
 
-    public GDate getInvoiceDate() {return invoiceDate.copy();}
+    public LocalDateTime getInvoiceDate() {
+        return invoiceDate;
+    }
 
-    public GDate getDueDate() {
-        return dueDate.copy();
+    public LocalDateTime getDueDate() {
+        return dueDate;
     }
 
     @Override
     public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         return "Invoice{" +
                 "invoiceId=" + invoiceId +
                 ", status=" + status +
-                ", invoiceDate=" + invoiceDate +
-                ", dueDate=" + dueDate +
+                ", invoiceDate=" + invoiceDate.format(formatter) +
+                ", dueDate=" + dueDate.format(formatter) +
                 '}';
     }
 
 
     public String toShortString() {
-        return  Integer.toString(invoiceId) +
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        return Integer.toString(invoiceId) +
                 ", status: " + status +
-                ", " + invoiceDate;
+                ", " + invoiceDate.format(formatter);
     }
 
     public LineItem getLineItem(int index) {
@@ -141,11 +149,28 @@ public class Invoice {
         this.status = status;
     }
 
-    public void setInvoiceDate(GDate invoiceDate) {
-        this.invoiceDate = invoiceDate.copy();
+    public void setInvoiceDate(LocalDateTime invoiceDate) {
+        this.invoiceDate = invoiceDate;
     }
 
-    public void setDueDate(GDate dueDate) {
-        this.dueDate = dueDate.copy();
+    public void setDueDate(LocalDateTime dueDate) {
+        this.dueDate = dueDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Invoice invoice = (Invoice) o;
+        return getInvoiceId() == invoice.getInvoiceId() &&
+                getStatus() == invoice.getStatus() &&
+                this.invoiceDate.equals(invoice.invoiceDate) &&
+                this.dueDate.equals(invoice.dueDate);
     }
 }
+
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(getInvoiceId(), getStatus(), getInvoiceDate(), getDueDate());
+//    }
+//}
