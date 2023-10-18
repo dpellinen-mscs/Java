@@ -17,6 +17,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Stack;
@@ -97,6 +98,26 @@ public class ApartmentController {
 
     @FXML
     private void saveAptButtonClicked(ActionEvent actionEvent) {
+        //Get Selected Apartment
+        int selectedAptIndex = this.aptComboBox.getSelectionModel().getSelectedIndex();
+        Apartment apartment = this.apartments.get(selectedAptIndex);
+
+        //Update apartment fields
+        apartment.setApartmentNum(aptNumTextField.getText());
+        apartment.setSquareFeet(Integer.parseInt(squareFeetTextField.getText()));
+        apartment.setBathrooms(Integer.parseInt(bathroomsTextField.getText()));
+        apartment.setPrice(Double.parseDouble(priceTextField.getText()));
+        apartment.setUpdated(LocalDateTime.now());
+
+        int selectedAdminIndex = this.adminComboBox.getSelectionModel().getSelectedIndex();
+        apartment.setAdministrator(people.get(selectedAdminIndex));
+        int selectedTenantIndex = this.tenantComboBox.getSelectionModel().getSelectedIndex();
+        apartment.setTenant(people.get(selectedTenantIndex));
+
+        // Update aptComboBox
+        this.aptComboBox.getItems().remove(selectedAptIndex);
+        this.aptComboBox.getItems().add(selectedAptIndex, apartment.toShortString());
+        this.aptComboBox.getSelectionModel().select(selectedAptIndex);
     }
 
     @FXML
