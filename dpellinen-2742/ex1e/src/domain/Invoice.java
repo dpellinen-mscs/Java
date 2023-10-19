@@ -166,6 +166,11 @@ public class Invoice {
                 this.invoiceDate.equals(invoice.invoiceDate) &&
                 this.dueDate.equals(invoice.dueDate);
     }
+
+    public Apartment getApartment() {
+        return this.apartment;
+    }
+
 }
 
 //    @Override

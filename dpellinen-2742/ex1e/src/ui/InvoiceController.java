@@ -63,7 +63,7 @@ public class InvoiceController {
     protected void initialize() {
         if (this.invoices.size() > 0)
         for (Invoice invoice : this.invoices) {
-            invoicesComboBox.getItems().add(invoice.toShortString());
+            invoicesComboBox.getItems().add(invoice);
         }
         invoicesComboBox.getSelectionModel().selectFirst();
         Invoice invoice = this.invoices.get(0);
@@ -144,8 +144,8 @@ public class InvoiceController {
         // select item in invoicesComboBox
 
         //get selected invoice
-        int invoiceIndex = this.invoicesComboBox.getSelectionModel().getSelectedIndex();
-        Invoice invoice = this.invoices.get(invoiceIndex);
+//        int invoiceIndex = this.invoicesComboBox.getSelectionModel().getSelectedIndex();
+        Invoice invoice = this.invoicesComboBox.getSelectionModel().getSelectedItem();
 
         //copy from form controls to invoice
 //        invoice.setStatus(Integer.parseInt(this.statusTextField.getText()));

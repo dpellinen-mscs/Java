@@ -111,8 +111,7 @@ public class ApartmentController {
     @FXML
     private void saveAptButtonClicked(ActionEvent actionEvent) {
         //Get Selected Apartment
-        int selectedAptIndex = this.aptComboBox.getSelectionModel().getSelectedIndex();
-        Apartment apartment = this.apartments.get(selectedAptIndex);
+        Apartment apartment = aptComboBox.getSelectionModel().getSelectedItem();
 
         //Update apartment fields
         apartment.setApartmentNum(aptNumTextField.getText());
@@ -145,7 +144,7 @@ public class ApartmentController {
 //          Apartment apartment = (apartments.get(selectedIndex));
         Apartment apartment = aptComboBox.getSelectionModel().getSelectedItem();
         if (apartment != null) {
-            ArrayList<Invoice> invoices = apartment.getInvoice();
+            ArrayList<Invoice> invoices = apartment .getInvoices();
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("InvoiceView.fxml"));
                 InvoiceController invoiceController = new InvoiceController();

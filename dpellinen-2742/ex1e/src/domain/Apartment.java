@@ -13,6 +13,8 @@ public class Apartment {
     private Person administrator;
     private Person tenant;
 
+    private final ArrayList<Invoice> invoices = new ArrayList<>();
+
     public Apartment() {
         this.apartmentId = 0;
         this.apartmentNum = "";
@@ -141,7 +143,7 @@ public class Apartment {
         return invoice;
     }
 
-    public ArrayList<Invoice> getInvoices {
+    public ArrayList<Invoice> getInvoices() {
         ArrayList<Invoice> invoices = new ArrayList<>();
         for (Invoice invoice : this.invoices) {
             invoices.add(invoice.copy());

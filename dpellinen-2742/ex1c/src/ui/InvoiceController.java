@@ -91,13 +91,13 @@ public class InvoiceController {
             invoicesComboBox.getItems().add(invoice.toShortString());
         }
         invoicesComboBox.getSelectionModel().selectFirst();
-        Invoice invoice = this.invoices.get(0);
-        this.displayInvoice(invoice);
-    }
+//        Invoice invoice = this.invoices.get(0);
+//        this.displayInvoice(invoice);
+//    }
 
         //4) clear description and amount TextFields
         //5) select first item in lineItemsListView
-       this.lineItemsListView.
+//       this.lineItemsListView.
         //6) if lineItems has an item, displayLineItem()
     }
     private void displayLineItem(LineItem lineItem) {
