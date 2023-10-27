@@ -58,6 +58,7 @@ public class HourlyAdministrator extends Administrator {
 //        return 45;
     }
 
+    @Override
     public double calcGrossPay() {
         return this.calcTotalHours() * this.hourlyRate;
     }

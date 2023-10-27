@@ -3,7 +3,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
-public class Administrator extends Person {
+public abstract class Administrator extends Person {
     private LocalDateTime birthDate;
     private String ssn;
     private String phone;
@@ -59,4 +59,6 @@ public class Administrator extends Person {
     private void setEmploymentStartDate(LocalDateTime employmentStartDate) {
         this.employmentStartDate = employmentStartDate;
     }
+
+    public abstract double calcGrossPay();
 }

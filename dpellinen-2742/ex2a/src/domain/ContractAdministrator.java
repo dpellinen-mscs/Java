@@ -24,6 +24,7 @@ public class ContractAdministrator extends Administrator {
 
         private void setMonthlyRate(double monthlyRate) {this.monthlyRate = monthlyRate;}
 
+        @Override
         public double calcGrossPay() {
         return this.monthlyRate;
     }

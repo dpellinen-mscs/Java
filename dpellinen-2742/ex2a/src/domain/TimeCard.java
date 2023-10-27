@@ -3,6 +3,7 @@ import java.sql.Time;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.Objects;
 
 public class TimeCard {
     private int timeCardId;
@@ -42,5 +43,20 @@ public class TimeCard {
                 ", startDateTime=" + startDateTime.format(formatter) +
                 ", endDateTime=" + endDateTime.format(formatter) +
                 ", hours=" + String.format("%.2f", calcHours());
+    }
+
+    @Override
+    public boolean equals (Object o) {
+        if (this == o) return true;
+        if (!(o instanceof TimeCard)) return false;
+        TimeCard timeCard = (TimeCard) o;
+        return timeCardId == timeCard.timeCardId &&
+                Objects.equals(startDateTime, timeCard.startDateTime) &&
+                Objects.equals(endDateTime, timeCard.endDateTime);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(timeCardId, startDateTime, endDateTime);
     }
 }
