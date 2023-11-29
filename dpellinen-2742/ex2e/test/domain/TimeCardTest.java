@@ -53,4 +53,10 @@ class TimeCardTest {
 
     }
 
+    @Test
+    void jsonStringifyTest() {
+        assertEquals("{\"id\":10005,\"startDateTime\":\"2023/10/25 02:00PM\",\"endDateTime\":\"2023/10/25 11:00PM\"}",
+                this.timeCard.jsonStringify());
+    }
+
 }

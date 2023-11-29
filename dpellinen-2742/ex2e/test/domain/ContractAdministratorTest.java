@@ -3,6 +3,7 @@ package domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,7 +14,7 @@ class ContractAdministratorTest {
     @BeforeEach
     void setUp() {
         this.contractAdministrator = new ContractAdministrator(104, "ConAdmin", "Johnson",
-                "cAdJohn", LocalDateTime.now(), "Con-Admi-nSSN", "123-con-admn", LocalDateTime.now(), 300.00);
+                "cAdJohn", LocalDateTime.of(2023,10,27, 00, 00), "Con-Admi-nSSN", "123-con-admn", LocalDateTime.of(2023,10,27, 00, 00), 300.00);
     }
 
     @Test

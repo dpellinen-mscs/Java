@@ -27,35 +27,35 @@ public abstract class Administrator extends Person {
                 ", employmentStartDate=" + employmentStartDate.format(formatter);
     }
 
-    private LocalDateTime getBirthDate() {
+    public LocalDateTime getBirthDate() {
         return birthDate;
     }
 
-    private void setBirthDate(LocalDateTime birthDate) {
+    public void setBirthDate(LocalDateTime birthDate) {
         this.birthDate = birthDate;
     }
 
-    private String getSsn() {
+    public String getSsn() {
         return ssn;
     }
 
-    private void setSsn(String ssn) {
+    public void setSsn(String ssn) {
         this.ssn = ssn;
     }
 
-    private String getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    private void setPhone(String phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
-    private LocalDateTime getEmploymentStartDate() {
+    public LocalDateTime getEmploymentStartDate() {
         return employmentStartDate;
     }
 
-    private void setEmploymentStartDate(LocalDateTime employmentStartDate) {
+    public void setEmploymentStartDate(LocalDateTime employmentStartDate) {
         this.employmentStartDate = employmentStartDate;
     }
 

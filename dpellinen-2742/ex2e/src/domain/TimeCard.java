@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
-public class TimeCard {
+public class TimeCard implements JSONStringifiable {
     private int timeCardId;
     private LocalDateTime startDateTime;
     private LocalDateTime endDateTime;
@@ -71,5 +71,19 @@ public class TimeCard {
     @Override
     public int hashCode() {
         return Objects.hash(timeCardId, startDateTime, endDateTime);
+    }
+    public String jsonStringify() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd hh:mma");
+    StringBuilder sb = new StringBuilder(200);
+
+    sb.append("{\"id\":");
+    sb.append(this.timeCardId);
+    sb.append(",\"startDateTime\":\"");
+    sb.append(formatter.format(this.startDateTime));
+    sb.append("\",\"endDateTime\":\"");
+    sb.append(formatter.format(this.endDateTime));
+    sb.append("\"}");
+
+    return sb.toString();
     }
 }

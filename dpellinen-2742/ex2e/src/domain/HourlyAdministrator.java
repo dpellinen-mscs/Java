@@ -2,10 +2,12 @@ package domain;
 
 import exceptions.TimeCardIllegalArgumentException;
 
+import java.awt.print.Printable;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class HourlyAdministrator extends Administrator {
+public class HourlyAdministrator extends Administrator implements JSONStringifiable {
     private double hourlyRate;
     private ArrayList<TimeCard> timeCards = new ArrayList<>();
 
@@ -72,11 +74,55 @@ public class HourlyAdministrator extends Administrator {
             totalHours += timeCard.calcHours();
         }
         return totalHours;
-//        return 45;
     }
 
     @Override
     public double calcGrossPay() {
         return this.calcTotalHours() * this.hourlyRate;
+    }
+    public String jsonStringify() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        StringBuilder sb = new StringBuilder(200);
+
+        sb.append("{\n");
+        sb.append("\"subclass\":\"hourlyAdministrator\",\n");
+        sb.append("\"personId\":");
+        sb.append(this.getPersonId());
+        sb.append(",\n");
+        sb.append("\"lastName\":\"");
+        sb.append(this.getLastName());
+        sb.append("\",\n");
+        sb.append("\"firstName\":\"");
+        sb.append(this.getFirstName());
+        sb.append("\",\n");
+        sb.append("\"userName\":\"");
+        sb.append(this.getUserName());
+        sb.append("\",\n");
+        sb.append("\"birthDate\":\"");
+        sb.append(formatter.format(this.getBirthDate()));
+        sb.append("\",\n");
+        sb.append("\"ssn\":\"");
+        sb.append(this.getSsn());
+        sb.append("\",\n");
+        sb.append("\"phone\":\"");
+        sb.append(this.getPhone());
+        sb.append("\",\n");
+        sb.append("\"employmentStartDate\":\"");
+        sb.append(formatter.format(this.getEmploymentStartDate()));
+        sb.append("\",\n");
+        sb.append("\"hourlyRate\":");
+        sb.append(this.hourlyRate);
+        sb.append(",\n");
+        sb.append("\"timeCards\":[\n");
+        for (TimeCard timeCard: timeCards) {
+            sb.append(timeCard.jsonStringify());
+            sb.append(",\n");
+        }
+        int commaIndex = sb.lastIndexOf(",");
+        sb.deleteCharAt(commaIndex);
+        sb.append("]\n");
+        sb.append("}");
+
+        return sb.toString();
     }
 }

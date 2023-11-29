@@ -14,7 +14,7 @@ class HourlyAdministratorTest {
     @BeforeEach
     void setUp() {
         this.hourlyAdministrator = new HourlyAdministrator(105, "Hourly", "Admin", "HrAdmin",
-                LocalDateTime.now(), "hrl-admn-stra", "123-hrAd-phone", LocalDateTime.now(), 50.0);
+                LocalDateTime.of(2023,10,27,00,00), "hrl-admn-stra", "123-hrAd-phone", LocalDateTime.of(2023,10,27,00,00), 50.0);
     }
 
     @Test
@@ -150,5 +150,29 @@ class HourlyAdministratorTest {
                 LocalDateTime.of(2023,10, 29, 23, 0));
         assertEquals(45, this.hourlyAdministrator.calcTotalHours());
         assertEquals(2250.00, this.hourlyAdministrator.calcGrossPay());
+    }
+    @Test
+    void jsonStringifyTest() {
+        this.hourlyAdministrator.addTimeCard(LocalDateTime.of(2018, 10, 22, 8, 0),
+                LocalDateTime.of(2018, 10, 22, 18, 0));
+        this.hourlyAdministrator.addTimeCard(LocalDateTime.of(2018, 10, 23, 8, 0),
+                LocalDateTime.of(2018, 10, 23, 18, 0));
+
+        assertEquals("{\n" +
+                "\"subclass\":\"hourlyAdministrator\",\n" +
+                "\"personId\":105,\n" +
+                "\"lastName\":\"Admin\",\n" +
+                "\"firstName\":\"Hourly\",\n" +
+                "\"userName\":\"HrAdmin\",\n" +
+                "\"birthDate\":\"2023/10/27\",\n" +
+                "\"ssn\":\"hrl-admn-stra\",\n" +
+                "\"phone\":\"123-hrAd-phone\",\n" +
+                "\"employmentStartDate\":\"2023/10/27\",\n" +
+                "\"hourlyRate\":50.0,\n" +
+                "\"timeCards\":[\n" +
+                "{\"id\":10016,\"startDateTime\":\"2018/10/22 08:00AM\",\"endDateTime\":\"2018/10/22 06:00PM\"},\n" +
+                "{\"id\":10017,\"startDateTime\":\"2018/10/23 08:00AM\",\"endDateTime\":\"2018/10/23 06:00PM\"}\n" +
+                "]\n" +
+                "}", this.hourlyAdministrator.jsonStringify());
     }
 }

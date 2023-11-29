@@ -28,10 +28,12 @@ public class Main {
             System.out.println(p);
             if (p.getClass() == HourlyAdministrator.class) {
                 HourlyAdministrator hourlyAdministrator = (HourlyAdministrator) p;
+                System.out.println(hourlyAdministrator.jsonStringify());
                 ArrayList<TimeCard> timeCards = hourlyAdministrator.getTimeCards();
-                for (TimeCard timeCard: timeCards) {
-                    System.out.println("\t" + timeCard);
-                }
+//                for (TimeCard timeCard: timeCards) {
+////                    System.out.println("\t" + timeCard);
+//                    System.out.println(timeCard.jsonStringify());
+//                }
             }
         }
 
