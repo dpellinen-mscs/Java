@@ -193,4 +193,8 @@ public class Sensor {
         }
         return i -1;
     }
+
+    public SensorReading getSensorReading (int index) {
+        return this.sensorReadings.get(index);
+    }
 }

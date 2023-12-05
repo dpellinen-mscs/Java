@@ -76,6 +76,16 @@ public class Main {
         System.out.println("First min after index 0: index = " + index + ", " +
                 sensor.getSensorReadings().get(index).toString());
 
+        int prevIndex = 0;
+        index = sensor.findNextCycleMax(0);
+        while (index > prevIndex)  {
+            prevIndex = index;
+            System.out.println("Index: " + index + ", Max: " + sensor.getSensorReading(index));
+            index = sensor.findNextCycleMin(index);
+            if (index > prevIndex)
+                 System.out.println("Index: " + index + ", Min: " + sensor.getSensorReading(index));
+            index = sensor.findNextCycleMax(index);
+        }
 
     }
 }
